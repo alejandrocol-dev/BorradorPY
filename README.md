@@ -47,8 +47,8 @@ Sistema de visión por computadora en tiempo real desarrollado en Python con Ope
 
 1. **Clonar el repositorio**:
    ```bash
-   git clone <URL_DEL_REPOSITORIO>
-   cd borrame
+   git clone https://github.com/alejandrocol-dev/BorradorPY.git
+   cd BorradorPY
    ```
 
 2. **Crear y activar un entorno virtual (recomendado)**:
