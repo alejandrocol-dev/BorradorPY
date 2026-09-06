@@ -25,7 +25,6 @@ Sistema de visión por computadora en tiempo real desarrollado en Python con Ope
 ├── borrame.py                  # Módulo de procesamiento y lógica de invisibilidad
 ├── utils.py                    # Clasificadores de mano, detectores y utilidades auxiliares
 ├── requirements.txt            # Especificación de dependencias del proyecto
-├── ejecutar.bat                # Script de inicio rápido para entornos Windows
 ├── efficientdet_lite0.tflite   # Modelo de detección de objetos/personas
 ├── hand_landmarker.task        # Modelo de puntos clave de mano de MediaPipe
 ├── selfie_segmenter.tflite     # Modelo de segmentación de silueta
@@ -72,13 +71,9 @@ Sistema de visión por computadora en tiempo real desarrollado en Python con Ope
 
 ## Ejecución
 
-### Mediante línea de comandos:
 ```bash
 python main.py
 ```
-
-### Mediante script directo (Windows):
-Ejecutar el archivo `ejecutar.bat` mediante doble clic o desde la terminal.
 
 ---
 
