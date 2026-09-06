@@ -1,0 +1,31 @@
+# Entornos virtuales y dependencias
+.venv/
+venv/
+env/
+ENV/
+
+# Python Cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Archivos temporales generados por la app
+bg.jpg
+*.mp4
+*.mp3
+*.wav
+*.avi
+
+# VS Code y editores locales
+.vscode/
+.history/
+.idea/
+*.swp
+*.swo
+
+# Sistema Operativo
+Thumbs.db
+[Dd]esktop.ini
+.DS_Store
