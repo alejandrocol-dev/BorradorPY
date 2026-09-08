@@ -1,75 +1,75 @@
 # Borrame
 
-Sistema de visión por computadora en tiempo real desarrollado en Python con OpenCV y MediaPipe. La aplicación permite generar un efecto de invisibilidad interactiva al detectar el cierre del puño del usuario, reemplazando la región corporal por un fondo estático previamente capturado, a la vez que proporciona seguimiento articular y métricas espaciales de la mano.
+Real-time computer vision system built with Python, OpenCV, and MediaPipe. The application generates an interactive invisibility effect by detecting when the user closes their fist, replacing their body region with a previously captured static background, while simultaneously providing hand skeletal tracking and spatial metrics.
 
 ---
 
-## Características Principales
+## Key Features
 
-- **Segmentación y Reemplazo de Fondo**: Sustitución dinámica del área delimitada del usuario en tiempo real con latencia mínima.
-- **Rastreo Articular de Mano (MediaPipe Hand Landmarker)**:
-  - Detección de los 21 puntos clave anatómicos de la mano.
-  - Cálculo continuo de la distancia euclidiana entre las puntas de los dedos y la articulación de la muñeca.
-  - Clasificación de estados gestuales (mano abierta vs. puño cerrado).
-  - Filtro temporal de histéresis (*debouncer*) para estabilizar la transición de estados y mitigar falsos positivos por oclusión.
-- **Detección de Presencia Humana (Bounding Box)**: Localización continua de la persona dentro del encuadre mediante modelos basados en TensorFlow Lite.
-- **Interfaz de Usuario (Tkinter)**: Panel de control con diseño oscuro integrado, asistente guiado para la captura del fondo y selectores de superposiciones visuales.
-- **Panel de Información en Vivo (HUD)**: Superposición en el flujo de video con indicadores de estado, tasa de cuadros por segundo (FPS) y controles rápidos.
+- **Background Segmentation and Replacement**: Dynamic real-time replacement of the user's segmented area with minimal latency.
+- **Hand Skeletal Tracking (MediaPipe Hand Landmarker)**:
+  - Detection of 21 anatomical keypoints of the hand.
+  - Continuous Euclidean distance calculation between fingertips and the wrist joint.
+  - Gesture state classification (open hand vs. closed fist).
+  - Temporal hysteresis filter (*debouncer*) to stabilize state transitions and mitigate false positives due to occlusion.
+- **Human Presence Detection (Bounding Box)**: Continuous localization of the user within the frame using TensorFlow Lite-based models.
+- **User Interface (Tkinter)**: Integrated dark-themed control panel, guided background capture wizard, and visual overlay selectors.
+- **Live Information Display (HUD)**: On-screen video overlay featuring status indicators, frames per second (FPS), and quick controls.
 
 ---
 
-## Estructura del Repositorio
+## Repository Structure
 
 ```text
-├── main.py                     # Interfaz gráfica de usuario y ciclo principal
-├── borrame.py                  # Módulo de procesamiento y lógica de invisibilidad
-├── utils.py                    # Clasificadores de mano, detectores y utilidades auxiliares
-├── requirements.txt            # Especificación de dependencias del proyecto
-├── efficientdet_lite0.tflite   # Modelo de detección de objetos/personas
-├── hand_landmarker.task        # Modelo de puntos clave de mano de MediaPipe
-├── selfie_segmenter.tflite     # Modelo de segmentación de silueta
-├── .gitignore                  # Patrones de exclusión para Git
-└── README.md                   # Documentación técnica del proyecto
+├── main.py                     # Graphical user interface and main loop
+├── borrame.py                  # Processing module and invisibility logic
+├── utils.py                    # Hand classifiers, detectors, and helper utilities
+├── requirements.txt            # Project dependency specifications
+├── efficientdet_lite0.tflite   # Object/person detection model
+├── hand_landmarker.task        # MediaPipe hand landmarker model
+├── selfie_segmenter.tflite     # Silhouette segmentation model
+├── .gitignore                  # Git ignore patterns
+└── README.md                   # Project technical documentation
 ```
 
 ---
 
-## Requisitos del Sistema
+## System Requirements
 
-- **Python**: Versión 3.9 o superior.
-- **Cámara Web**: Resolución mínima recomendada de 720p (1280x720).
-- **Sistema Operativo**: Compatible con Windows, Linux y macOS.
+- **Python**: Version 3.9 or higher.
+- **Webcam**: Recommended minimum resolution of 720p (1280x720).
+- **Operating System**: Compatible with Windows, Linux, and macOS.
 
 ---
 
-## Instalación y Configuración
+## Installation and Setup
 
-1. **Clonar el repositorio**:
+1. **Clone the repository**:
    ```bash
    git clone https://github.com/alejandrocol-dev/BorradorPY.git
    cd BorradorPY
    ```
 
-2. **Crear y activar un entorno virtual (recomendado)**:
-   - En Windows:
+2. **Create and activate a virtual environment (recommended)**:
+   - On Windows:
      ```powershell
      python -m venv .venv
      .\.venv\Scripts\activate
      ```
-   - En Linux/macOS:
+   - On Linux/macOS:
      ```bash
      python3 -m venv .venv
      source .venv/bin/activate
      ```
 
-3. **Instalar dependencias**:
+3. **Install dependencies**:
    ```bash
    pip install -r requirements.txt
    ```
 
 ---
 
-## Ejecución
+## Usage
 
 ```bash
 python main.py
@@ -77,31 +77,31 @@ python main.py
 
 ---
 
-## Flujo de Operación
+## Operational Workflow
 
-1. **Paso 1 - Captura de Fondo**:
-   - Presionar el botón `1. Capturar Fondo`.
-   - Despejar el encuadre frente a la cámara durante la cuenta regresiva de 5 segundos.
-2. **Paso 2 - Inicio del Sistema**:
-   - Presionar el botón `2. Iniciar Borrame`.
-   - Ubicarse frente a la cámara dentro del campo visual.
-3. **Control Gestual**:
-   - **Mano abierta**: Visualización normal con superposición del esqueleto articular y vectores de medición.
-   - **Puño cerrado**: Activación del efecto de invisibilidad sobre el usuario.
+1. **Step 1 - Background Capture**:
+   - Click the `1. Capturar Fondo` button.
+   - Clear the camera's field of view during the 5-second countdown.
+2. **Step 2 - Start the System**:
+   - Click the `2. Iniciar Borrame` button.
+   - Position yourself in front of the camera within the frame.
+3. **Gesture Control**:
+   - **Open hand**: Normal display with skeletal overlay and measurement vectors.
+   - **Closed fist**: Activates the invisibility effect over the user.
 
 ---
 
-## Controles en Tiempo Real (Modo Cámara)
+## Real-Time Controls (Camera Mode)
 
-| Tecla | Función |
+| Key | Function |
 |:---:|---|
-| `B` | Alternar la visibilidad del recuadro delimitador (Bounding Box). |
-| `H` | Alternar la visibilidad del esqueleto articular de la mano. |
-| `C` | Recapturar el fotograma de fondo en caliente. |
-| `Q` / `Esc` | Finalizar el modo de captura y regresar a la interfaz principal. |
+| `B` | Toggle bounding box visibility. |
+| `H` | Toggle hand skeletal landmarks visibility. |
+| `C` | Recapture background frame on the fly. |
+| `Q` / `Esc` | Exit capture mode and return to the main interface. |
 
 ---
 
-## Licencia
+## License
 
-Este proyecto está distribuido bajo los términos de la Licencia MIT. Para mayor información, consulte el archivo [LICENSE](LICENSE).
+This project is distributed under the terms of the MIT License. For more information, see the [LICENSE](LICENSE) file.
